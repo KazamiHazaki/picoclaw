@@ -18,7 +18,7 @@ services:
       - gateway
     volumes:
       # Configuration file
-      - ./config/config.json:/root/.picoclaw/config.json:ro
+      - ../files/config.json:/root/.picoclaw/config.json:ro
       # Persistent workspace (sessions, memory, logs)
       - picoclaw-workspace:/root/.picoclaw/workspace
     command: ["gateway"]
