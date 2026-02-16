@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: picoclaw-gateway
+   # container_name: picoclaw-gateway
     restart: unless-stopped
     profiles:
       - gateway
