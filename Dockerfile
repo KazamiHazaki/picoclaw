@@ -16,17 +16,27 @@ COPY . .
 RUN make build
 
 # ============================================================
-# Stage 2: Minimal runtime image
+# Stage 2: Runtime image (Go + Python)
 # ============================================================
 FROM alpine:3.23
 
-RUN apk add --no-cache ca-certificates tzdata curl
+# Install runtime dependencies + Python
+RUN apk add --no-cache \
+    ca-certificates \
+    tzdata \
+    curl \
+    python3 \
+    py3-pip \
+    bash
+
+# Optional: create python symlink
+RUN ln -sf python3 /usr/bin/python
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD wget -q --spider http://localhost:18790/health || exit 1
 
-# Copy binary
+# Copy Go binary
 COPY --from=builder /src/build/picoclaw /usr/local/bin/picoclaw
 
 # Create picoclaw home directory
