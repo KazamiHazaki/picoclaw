@@ -1,13 +1,4 @@
 services:
-  # ─────────────────────────────────────────────
-  # PicoClaw Agent (one-shot query)
-  #   docker compose run --rm picoclaw-agent -m "Hello"
-  # ─────────────────────────────────────────────
-  
-   ─────────────────────────────────────────────
-  # PicoClaw Gateway (Long-running Bot)
-  #   docker compose up picoclaw-gateway
-  # ─────────────────────────────────────────────
   picoclaw-gateway:
     build:
       context: .
